@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome Back | Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="page">
+    <section class="login-card" aria-labelledby="login-title">
+      <div class="brand-mark" aria-hidden="true">✦</div>
+      <p class="eyebrow">YOUR SPACE, YOUR WAY</p>
+      <h1 id="login-title">Welcome back</h1>
+      <p class="subtitle">Log in to continue to your account.</p>
+
+      <form id="login-form">
+        <label for="email">Email address</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+
+        <div class="password-row">
+          <label for="password">Password</label>
+          <a href="#" id="forgot-link">Forgot password?</a>
+        </div>
+        <div class="password-wrap">
+          <input id="password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required minlength="6" />
+          <button class="show-password" type="button" id="toggle-password" aria-label="Show password">Show</button>
+        </div>
+
+        <button class="login-button" type="submit">Log in <span aria-hidden="true">→</span></button>
+        <p id="message" class="message" role="status" aria-live="polite"></p>
+      </form>
+
+      <p class="signup">Don't have an account? <a href="#" id="signup-link">Sign up</a></p>
+    </section>
+  </main>
+  <script>
+    const passwordInput = document.getElementById('password');
+    const toggleButton = document.getElementById('toggle-password');
+    const message = document.getElementById('message');
+
+    toggleButton.addEventListener('click', () => {
+      const isHidden = passwordInput.type === 'password';
+      passwordInput.type = isHidden ? 'text' : 'password';
+      toggleButton.textContent = isHidden ? 'Hide' : 'Show';
+      toggleButton.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+    });
+
+    document.getElementById('login-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      message.textContent = 'This is a demo login page. No account was accessed.';
+      message.classList.add('visible');
+    });
+
+    document.getElementById('forgot-link').addEventListener('click', (event) => {
+      event.preventDefault();
+      message.textContent = 'Password reset is not connected in this demo.';
+      message.classList.add('visible');
+    });
+
+    document.getElementById('signup-link').addEventListener('click', (event) => {
+      event.preventDefault();
+      message.textContent = 'Sign-up is not connected in this demo.';
+      message.classList.add('visible');
+    });
+  </script>
+</body>
+</html>
